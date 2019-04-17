@@ -10,5 +10,5 @@
 }
 
 data <- readRDS(
-  file.path(.get_course_path(), "Learn_the_tidyverse", "dplyr", "pokemon.RDS")
+  file.path(.get_course_path(), "tidyswirl", "dplyr", "pokemon.RDS")
 )
