@@ -1,0 +1,35 @@
+- Class: meta
+  Course: Learn the tidyverse
+  Lesson: dplyr
+  Author: Matt Dray
+  Type: Standard
+  Version: 2.4.3
+
+- Class: text
+  Output: Welcome. This lesson is about the {dplyr} package created by Hadley Wickham. {dplyr} is used for wrangling tidy dataframes. This means doing stuff like selecting columns of interest, adding new columns or filtering out certain rows.
+
+- Class: cmd_question
+  Output: First you need to install the {dplyr} package to your computer with 'install.packages("dplyr")'. If you've already installed it, you can skip this step by typing 'skip()'.
+  CorrectAnswer: if (!require("dplyr")) install.packages("dplyr")
+  AnswerTests: any_of_exprs('install.packages("dplyr")', 'install.packages(pkgs = "dplyr")', "install.packages(pkgs = 'dplyr')", 'if (!require("dplyr")) install.packages("dplyr")')
+  Hint: Remember to type the quotation marks.
+
+- Class: cmd_question
+  Output: I've loaded a tibble object called 'data' into memory for you. Take a look at the structure of the dataframe using the glimpse() function, which is available from {dplyr}.
+  CorrectAnswer: glimpse(x = data)
+  AnswerTests: any_of_exprs('glimpse(data)', 'glimpse(x = data)')
+  Hint: "glimpse() only needs one argument, which is the name of our data object."
+
+- Class: mult_question
+  Output: So it looks like I've given you a Pokemon Go dataset. Each row is a captured Pokemon. Look at the output from glimpse(). How many rows are there?
+  AnswerChoices: 151;251;696;807
+  CorrectAnswer: 696
+  AnswerTests: omnitest(correctVal='696')
+  Hint: glimpse() reports back the number of 'observations', which is the same thing as 'rows'.
+
+- Class: mult_question
+  Output: And what data type is the species column reported by glimpse()?
+  AnswerChoices: character;integer;logical;double
+  CorrectAnswer: character
+  AnswerTests: omnitest(correctVal='character')
+  Hint: <chr> is character, <int> is integer, <lgl> is logical and <dbl> is double.
