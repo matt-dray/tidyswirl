@@ -15,6 +15,7 @@
 /*.Rcheck/
 
 # RStudio files
+.Rproj
 .Rproj.user/
 
 # produced vignettes
@@ -45,14 +46,3 @@ public
 
 # mac hidden file
 .DS_Store
-
-# datasets and outputs
-*.csv
-*.xlsx
-*.xls
-*.tsv
-*.json
-*.docx
-*.RDS
-*.png
-*.html
