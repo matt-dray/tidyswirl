@@ -38,7 +38,7 @@ Swirl will introduce itself and ask which of the installed courses you'd like to
 
 ## Make your own course
 
-You can use the [{swirlify}](http://swirlstats.com/swirlify/) to create your lessons.
+You can use the [{swirlify}](http://swirlstats.com/swirlify/) package to create your lessons. It even has a Shiny GUI for building a course.
 
 This tidyswirl course was saved saved as a `.swc` file in this GitHub repository and can be fetched with the `install_course_github()` function.
 
