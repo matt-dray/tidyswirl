@@ -2,3 +2,5 @@
       # lesson is started. Any variables created here will show up in
       # the user's working directory and thus be accessible to them
       # throughout the lesson.
+
+legs_vec <- c("cat" = 4, "snake"= 0, "bird" = 2)
