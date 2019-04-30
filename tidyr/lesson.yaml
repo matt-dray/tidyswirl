@@ -1,0 +1,74 @@
+- Class: meta
+  Course: tidyswirl
+  Lesson: tidyr
+  Author: Matt Dray
+  Type: Standard
+  Version: 2.4.3
+
+# Intro: what is this package for?
+
+- Class: text
+  Output: The {tidyr} package helps you tidy your raw data ready for further processing.
+
+# Intro: related tidyverse packages
+
+- Class: text
+  Output: You're likely to use {tidyr} after you've read in your data with {readr} or {tibble} so you can prepare it for further manipulation with {dplyr}.
+
+# Intro: wider context
+
+- Class: text
+  Output: Tabular data is 'tidy' if there's one observation per column and one row per observation. This is an important concept in the tidyverse; it's in the name after all.
+
+# Intro: relevant tidyverse cheatsheet
+
+- Class: text
+  Output: Get the RStudio cheatsheet for {tidyr} at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
+
+# Intro: package installation
+
+- Class: cmd_question
+  Output: You first need to install {tidyr} on your computer with install.packages("tidyr"). Type skip() if you've installed it already.
+  CorrectAnswer: if (!require("tidyr")) install.packages("tibble")
+  AnswerTests: any_of_exprs('install.packages("tidyr")', 'install.packages(pkgs = "tidyr")', 'if (!require("tidyr")) install.packages("tidyr")')
+  Hint: Remember to type quotation marks around "tibble" when you pass it to the function.
+  
+- Class: cmd_question
+  Output: Now supply the package name to library() so we can access its functions.
+  CorrectAnswer: library(tibble)
+  AnswerTests: any_of_exprs('library("tidyr")', 'library(tidyr)', 'library(package = "tidyr")')
+  Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
+
+- Class: text
+  Output: The {tidyr} package is now installed and loaded. Next we're going to look at some of the common functions in the package.
+
+# Group: reshaping data
+# Function: spread()
+# Function: gather()
+# Test: group
+
+# Group: deal with missing values
+# Function: drop_na()
+# Function: replace_na()
+# Function: fill()
+# Test: group
+
+# Group: splitting data
+# Function: separate()
+# Function: separate_rows()
+# Function: unite()
+# Test: group
+
+# Group: expand tables
+# Function: complete()
+# Function: expand()
+# Test: group
+
+# Group: Listcols
+# Function: nest()
+# Function: unnest()
+# Test: group
+
+# Test knowledge of package
+
+# Outro: 
