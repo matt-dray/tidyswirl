@@ -16,8 +16,8 @@ I used the [{swirlify}](http://swirlstats.com/swirlify/) package to help create 
 
 1. {readr} (todo)
 1. {tibble} (underway)
-1. {tidyr} (todo)
-1. {dplyr} (underway)
+1. {tidyr} (underway)
+1. {dplyr} (todo)
 1. {ggplot2} (todo)
 1. {purrr} (todo)
 1. {stringr} (todo)
