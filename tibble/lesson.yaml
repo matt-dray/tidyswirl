@@ -48,8 +48,8 @@
 - Class: mult_question
   Output: Compare the data.frame output to the tibble output. Which of the following is true?
   AnswerChoices: Tibbles print fewer rows; Tibbles use colour to provide meaning; Tibbles give the data type of each column; All of these are true
-  CorrectAnswer: All of the above
-  AnswerTests: omnitest(correctVal='All of the above')
+  CorrectAnswer: All of these are true
+  AnswerTests: omnitest(correctVal='All of these are true')
   Hint: Take a look at the tibble that was printed after you executed as_tibble(airquality)
 
 - Class: text
