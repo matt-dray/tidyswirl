@@ -5,20 +5,16 @@
   Type: Standard
   Version: 2.4.3
 
-# Intro: what is this package for?
+# Intro: package purpose
 
 - Class: text
-  Output: The {tidyr} package helps you tidy your raw data ready for further processing.
+  Output: The {tidyr} package helps you make your dataset tidy.
 
-# Intro: related tidyverse packages
+- Class: text
+  Output: Tabular data is 'tidy' if there's one observation per column and one row per observation. This is an important concept in the tidyverse
 
 - Class: text
   Output: You're likely to use {tidyr} after you've read in your data with {readr} or {tibble} so you can prepare it for further manipulation with {dplyr}.
-
-# Intro: wider context
-
-- Class: text
-  Output: Tabular data is 'tidy' if there's one observation per column and one row per observation. This is an important concept in the tidyverse; it's in the name after all.
 
 # Intro: relevant tidyverse cheatsheet
 
@@ -28,24 +24,95 @@
 # Intro: package installation
 
 - Class: cmd_question
-  Output: You first need to install {tidyr} on your computer with install.packages("tidyr"). Type skip() if you've installed it already.
+  Output: You first need to install {tidyr} into your computer's package library. Run install.packages("tidyr"), or skip() if you've installed it before.
   CorrectAnswer: if (!require("tidyr")) install.packages("tibble")
   AnswerTests: any_of_exprs('install.packages("tidyr")', 'install.packages(pkgs = "tidyr")', 'if (!require("tidyr")) install.packages("tidyr")')
-  Hint: Remember to type quotation marks around "tibble" when you pass it to the function.
+  Hint: Remember to type quotation marks around "tidyr" when you pass it to the function.
   
 - Class: cmd_question
-  Output: Now supply the package name to library() so we can access its functions.
+  Output: Access {tidyr}'s functions by calling it from your computer's package library. Run library(tidyr).
   CorrectAnswer: library(tibble)
   AnswerTests: any_of_exprs('library("tidyr")', 'library(tidyr)', 'library(package = "tidyr")')
   Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
 
 - Class: text
-  Output: The {tidyr} package is now installed and loaded. Next we're going to look at some of the common functions in the package.
+  Output: Great, the {tidyr} package is installed and loaded. Now we're going to look at some of the its functions.
 
 # Group: reshaping data
-# Function: spread()
+
+- Class: text
+  Output: We'll start with two functions -- gather() and spread() -- that will help reshape our data and make it tidy.
+
 # Function: gather()
+
+- Class: text
+  Output: gather() helps us reshape a dataset from a 'wide' format to a 'long' format.
+
+- Class: text
+  Output: For example, we might have separate columns of data for each year. This means that some meaningful information -- the year -- is locked up in the column names. We should free these names and put them in their own column called 'year' (the 'key') and put the corresponding data into its own column (the 'value') as well. Let's try out this example. 
+
+- Class: cmd_question
+  Output: The {tidyr} package has a built-in dataset that's wide and untidy. Type 'table4a' and hit enter to see it
+  CorrectAnswer: tidy4a
+  AnswerTests: omnitest(correctVal = 'table4a')
+  Hint: Type 'table4a' (without quotation marks) and hit enter.
+
+- Class: text
+  Output: Did you notice there's columns for 1999 and 2000? This means we have two observations for each row (country) in our dataset. We need to gather these columns together -- recall that a tidy data frame has only one observation per row. 
+
+- Class: text
+  Output: To do this, we need to supply the gather() function with four things -- (1) the name of the dataset (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) the 'key' argument, which is a new name ("year") for the column we're gathering into, and (4) the 'value' argument, which is a new name ("cases") for the column that will contain the corresponding data for each year. Let's do this now.
+
+- Class: cmd_question
+  Output: Use the gather() function to make table4a tidy.
+  CorrectAnswer: gather(table4a, `1999`, `2000`, key = "year", value = "cases")
+  AnswerTests: omnitest(correctVal = 'gather(table4a, `1999`, `2000`, key = "year", value = "cases")')
+  Hint: Use the form gather(dataset_name, column_to_gather1, column_to_gather2, key = "new_col_name", value = "new_data_col_name")
+
+- Class: text
+  Output: Excellent, gather() helped tidy the data from wide to long format.
+
+# Function: spread()
+
+- Class: text
+  Output: The second {tidyr} function for reshaping data is spread(). It helps us reshape from a 'long' format to a 'wide' format to achieve a tidy dataset.
+
+- Class: text
+  Output: For example, we might have multiple rows for the same observation. For each country-year combination we might have a column with two different types of data in it that should really be in separate columns. Let's take a look at an example.
+
+- Class: cmd_question
+  Output: The {tidyr} package has a built-in dataset that's long and untidy. Type 'table2' and hit enter to see it
+  CorrectAnswer: tidy2
+  AnswerTests: omnitest(correctVal = 'table2')
+  Hint: Type 'table2' (without quotation marks) and hit enter.
+
+- Class: text
+  Output: Did you notice the 'type' column and its corresponding 'count' column contain two types of data ('cases' and 'population')? We need to spread the unique values of 'type' into separate columns filled with the 'count' data.
+
+- Class: text
+  Output: To do this, you need to give spread() three things -- (1) the name of the data frame (table2a), (2) the name of the column (type) whose unique values will provide the new column names, and (3) the name of the column (count) containing the data values that will fill those new columns.
+
+- Class: cmd_question
+  Output: Use the spread() function to make table2 tidy.
+  CorrectAnswer: gather(table2, type, count)
+  AnswerTests: omnitest(correctVal = 'spread(table2, type, count)')
+  Hint: Use the form spread(dataset_name, column_to_spread, column_of_data).
+
+- Class: text
+  Output: Excellent, spread() helped tidy the data from long to wide format.
+
 # Test: group
+
+- Class: mult_question
+  Output: Which of these are properties of 'tidy' data? (A) Thre's one row per observation, (B) there's one column per variable (C) long data is tidier than wide data, (D) wide data is tidier than long data.
+  AnswerChoices: All of them; (A) and (B); (A), (B) and (C); (A), (B) and (D); (A) only
+  CorrectAnswer: (A) and (B)
+  AnswerTests: omnitest(correctVal='(A) and (B)')
+  Hint: gather() makes wide data long and spread() does the opposite. Both create the right number of columns to allow for a single observation per row. 
+
+- Class: text
+  Output: Okay, we're done with reshaping for now. Let's take a look at some simpler functions from {tidyr} that will help prepare data for further analysis. 
+
 
 # Group: deal with missing values
 # Function: drop_na()
