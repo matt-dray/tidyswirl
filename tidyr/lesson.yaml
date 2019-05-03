@@ -25,8 +25,8 @@
 
 - Class: cmd_question
   Output: You first need to install {tidyr} into your computer's package library. Run install.packages("tidyr"), or skip() if you've installed it before.
-  CorrectAnswer: if (!require("tidyr")) install.packages("tibble")
-  AnswerTests: any_of_exprs('install.packages("tidyr")', 'install.packages(pkgs = "tidyr")', 'if (!require("tidyr")) install.packages("tidyr")')
+  CorrectAnswer: if (!require("tidyr")) install.packages("tidyr")
+  AnswerTests: any_of_exprs('install.packages("tidyr")', 'install.packages(pkgs = "tidyr")', 'if (!require("tidyr")) install.packages("tidyr")', 'skip()')
   Hint: Remember to type quotation marks around "tidyr" when you pass it to the function.
   
 - Class: cmd_question
@@ -48,26 +48,23 @@
 - Class: text
   Output: gather() helps us reshape a dataset from a 'wide' format to a 'long' format.
 
-- Class: text
-  Output: For example, we might have separate columns of data for each year. This means that some meaningful information -- the year -- is locked up in the column names. We should free these names and put them in their own column called 'year' (the 'key') and put the corresponding data into its own column (the 'value') as well. Let's try out this example. 
-
 - Class: cmd_question
   Output: The {tidyr} package has a built-in dataset that's wide and untidy. Type 'table4a' and hit enter to see it
   CorrectAnswer: tidy4a
   AnswerTests: omnitest(correctVal = 'table4a')
   Hint: Type 'table4a' (without quotation marks) and hit enter.
 
-- Class: text
-  Output: Did you notice there's columns for 1999 and 2000? This means we have two observations for each row (country) in our dataset. We need to gather these columns together -- recall that a tidy data frame has only one observation per row. 
+- Class: text 
+  Output: Did you notice the yearly data is in separate columns (1999 and 2000)? This means the data is wide -- it has two observations per row -- and is therefore untidy. The gather() function will help us fix this.
 
 - Class: text
-  Output: To do this, we need to supply the gather() function with four things -- (1) the name of the dataset (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) the 'key' argument, which is a new name ("year") for the column we're gathering into, and (4) the 'value' argument, which is a new name ("cases") for the column that will contain the corresponding data for each year. Let's do this now.
+  Output: gather() needs four things -- (1) the data frame name (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) the 'key' argument, a name ("year") for the column we're gathering into, and (4) the 'value' argument, a new name ("cases") for the new data column. 
 
 - Class: cmd_question
   Output: Use the gather() function to make table4a tidy.
   CorrectAnswer: gather(table4a, `1999`, `2000`, key = "year", value = "cases")
   AnswerTests: omnitest(correctVal = 'gather(table4a, `1999`, `2000`, key = "year", value = "cases")')
-  Hint: Use the form gather(dataset_name, column_to_gather1, column_to_gather2, key = "new_col_name", value = "new_data_col_name")
+  Hint: Use the form gather(dataframe, column_to_gather1, column_to_gather2, key = "col_name", value = "col_name")
 
 - Class: text
   Output: Excellent, gather() helped tidy the data from wide to long format.
@@ -75,7 +72,7 @@
 # Function: spread()
 
 - Class: text
-  Output: The second {tidyr} function for reshaping data is spread(). It helps us reshape from a 'long' format to a 'wide' format to achieve a tidy dataset.
+  Output: The second {tidyr} function for reshaping data is spread(). It does the opposite to gather() -- it helps us reshape from a 'long' to a 'wide' format.
 
 - Class: text
   Output: For example, we might have multiple rows for the same observation. For each country-year combination we might have a column with two different types of data in it that should really be in separate columns. Let's take a look at an example.
@@ -90,13 +87,13 @@
   Output: Did you notice the 'type' column and its corresponding 'count' column contain two types of data ('cases' and 'population')? We need to spread the unique values of 'type' into separate columns filled with the 'count' data.
 
 - Class: text
-  Output: To do this, you need to give spread() three things -- (1) the name of the data frame (table2a), (2) the name of the column (type) whose unique values will provide the new column names, and (3) the name of the column (count) containing the data values that will fill those new columns.
+  Output: To do this, you need to give spread() three things -- (1) the name of the data frame (table2a), (2) the name of the column (type) whose unique values will become new columns, and (3) the name of the column (count) that has the data that will fill the new columns.
 
 - Class: cmd_question
   Output: Use the spread() function to make table2 tidy.
   CorrectAnswer: gather(table2, type, count)
   AnswerTests: omnitest(correctVal = 'spread(table2, type, count)')
-  Hint: Use the form spread(dataset_name, column_to_spread, column_of_data).
+  Hint: Use the form spread(dataframe_name, column_to_spread, column_of_data).
 
 - Class: text
   Output: Excellent, spread() helped tidy the data from long to wide format.
@@ -113,12 +110,55 @@
 - Class: text
   Output: Okay, we're done with reshaping for now. Let's take a look at some simpler functions from {tidyr} that will help prepare data for further analysis. 
 
-
 # Group: deal with missing values
+
+- Class: text
+  Output: Often your dataset will have missing values. How can you treat these?
+
+- Class: cmd_question
+  Output: I've added a table with NAs (missing values) to your environment. Run 'table_na' to print the table.
+  CorrectAnswer: table_na
+  AnswerTests: omnitest(correctVal = 'table_na')
+  Hint: Type 'table_na' and press enter to see the table in the console.
+
+- Class: text
+  Output: The table has two columns and five rows. Column x2 has a mixture of data and missing values (NA).
+
 # Function: drop_na()
+
+- Class: text
+  Output: drop_na() lets you discard rows that contain an NA by supplying the name of the data frame and the column containing NA values.
+
+- Class: cmd_question
+  Output: Use drop_na() to remove the rows of table_na that contain an NA in the x2 column.
+  CorrectAnswer: drop_na(table_na, x2)
+  AnswerTests: omnitest(correctVal = 'drop_na(table_na, x2)')
+  Hint: Type 'table_na' and 'x2' into the brackets of drop_na() separated by a comma.
+
 # Function: replace_na()
+
+- Class: text
+  Output: replace_na() lets you swap NA values for another value. You supply (1) the name of the data frame and (2) a list containing the column to convert and value to replace NAs with, in the form list(col_name = "replacement_value").
+
+- Class: cmd_question
+  Output: Use replace_na() to convert the NA values in the x2 column of table_na to a 1.
+  CorrectAnswer: replace_na(table_na, list(x2 = 1))
+  AnswerTests: omnitest(correctVal = 'replace_na(table_na, list(x2 = 1))')
+  Hint: Supply table_na as the first argument to replace_na() and list(x2 = 1) as the second argument.
+
 # Function: fill()
+
+- Class: text
+  Output: The fill() function will replace NAs in a column with the the closest valid value above it.
+
+- Class: cmd_question
+  Output: Use fill() to 'fill down' the x2 column and replace the NAs.
+  CorrectAnswer: fill(table_na, x2)
+  AnswerTests: omnitest(correctVal = 'fill(table_na, x2)')
+  Hint: Pass table_na as the first argument to fill() and x2 as the second argument.
+
 # Test: group
+
 
 # Group: splitting data
 # Function: separate()
@@ -131,7 +171,7 @@
 # Function: expand()
 # Test: group
 
-# Group: Listcols
+# Group: List-columns
 # Function: nest()
 # Function: unnest()
 # Test: group
