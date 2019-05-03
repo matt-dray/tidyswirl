@@ -11,7 +11,7 @@
   Output: The {tidyr} package helps you make your dataset tidy.
 
 - Class: text
-  Output: Tabular data is 'tidy' if there's one observation per column and one row per observation. This is an important concept in the tidyverse
+  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. The tidyverse packages use tidy data for simplicity consistency. 
 
 - Class: text
   Output: You're likely to use {tidyr} after you've read in your data with {readr} or {tibble} so you can prepare it for further manipulation with {dplyr}.
@@ -38,7 +38,7 @@
 - Class: text
   Output: Great, the {tidyr} package is installed and loaded. Now we're going to look at some of the its functions.
 
-# Group: reshaping data
+# Group: reshaping data ---
 
 - Class: text
   Output: We'll start with two functions -- gather() and spread() -- that will help reshape our data and make it tidy.
@@ -110,7 +110,7 @@
 - Class: text
   Output: Okay, we're done with reshaping for now. Let's take a look at some simpler functions from {tidyr} that will help prepare data for further analysis. 
 
-# Group: deal with missing values
+# Group: deal with missing values ---
 
 - Class: text
   Output: Often your dataset will have missing values. How can you treat these?
@@ -159,11 +159,53 @@
 
 # Test: group
 
+# Group: splitting data ---
 
-# Group: splitting data
+- Class: text
+  Output: Sometimes multiple data items are stored in the same 'cell' of a data frame, which is untidy. {tidyr} can help split these items into new columns or rows.
+
+- Class: cmd_question
+  Output: Run table3 to see an example of a table that needs separation.
+  CorrectAnswer: table3
+  AnswerTests: omnitest(correctVal = 'table3')
+  Hint: Type 'table3' and press enter to see the table in the console.
+
+- Class: text
+  Output: The 'rate' column contains two data items with a forward slash ('/') between them.
+
 # Function: separate()
+
+- Class: text
+  Output: The separate() function splits data by some delimiter and puts each part into its own column. Supply (1) the data frame name, (2) the column that needs separating, (3) the delimiter, (4) a vector of column names to received the separated data.
+
+- Class: cmd_question
+  Output: Use separate on table3 to split the 'rate' column by '/' into new columns named 'cases' and 'pop'.
+  CorrectAnswer: separate(table3, rate, sep = "/", into = c("cases", "pop"))
+  AnswerTests: any_of_exprs('separate(table3, rate, into = c("cases", "pop"))', 'separate(table3, rate, "/", into = c("cases", "pop"))', 'separate(table3, rate, sep = "/", into = c("cases", "pop"))')
+  Hint: Use the form separate(dataframe, col_to_separate, sep = "/", into = c("new_col_1", "new_col_2"))
+
 # Function: separate_rows()
+
+- Class: text
+  Output: The separate_rows() function is like separate(), but the separated data are inserted into new rows rather than new columns. This means you only need to supply (1) the data frame name, (2) the name of the column to be separated into rows and (3) in the form sep = "/".
+
+- Class: cmd_question
+  Output: Use separate_rows() on table3 to split the 'rate' column by '/' into new rows.
+  CorrectAnswer: separate_rows(table3, rate, sep = "/")
+  AnswerTests: omnitest(correctVal = 'separate_rows(table3, rate, sep = "/")')
+  Hint: Your answer should be in the form separate_rows(dataframe, col_to_separate, sep = "/")
+
 # Function: unite()
+
+- Class: text
+  Output: We can also unite() columns, which is the opposite of separating them. You pass (1) the name of the data frame, (2) the columns from which data will be united, (3) the delimiter, (4) a name for the column that will hold the newly-united data. 
+
+- Class: cmd_question
+  Output: Use unite() on table5 to combine the 'century' and 'year' columns with a blank delimiter ("") into a new column ("year").
+  CorrectAnswer: unite(table5, century, year, sep = "", col = "year")
+  AnswerTests: omnitest(correctVal = '')
+  Hint: Your answer should be in the form unite(dataframe, col_to_unite_1, col_to_unite_2, sep = "/", col = "new_col")
+
 # Test: group
 
 # Group: expand tables
