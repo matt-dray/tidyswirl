@@ -21,7 +21,7 @@
 - Class: text
   Output: Get the RStudio cheatsheet for {tidyr} at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
 
-# Intro: package installation
+# Package installation
 
 - Class: cmd_question
   Output: You first need to install {tidyr} into your computer's package library. Run install.packages("tidyr"), or skip() if you've installed it before.
@@ -36,29 +36,32 @@
   Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
 
 - Class: text
-  Output: Great, the {tidyr} package is installed and loaded. Now we're going to look at some of the its functions.
+  Output: Great, the {tidyr} package is installed and loaded. Now we're going to look at some of the its functions. You'll see how to reshape your data frame, deal with missing values and split the content of cells. 
 
 # Group: reshaping data ---
 
 - Class: text
-  Output: We'll start with two functions -- gather() and spread() -- that will help reshape our data and make it tidy.
+  Output: We'll start with two functions for reshaping a data frame -- gather() and spread() -- to get it into a tidy format. 
 
 # Function: gather()
 
 - Class: text
   Output: gather() helps us reshape a dataset from a 'wide' format to a 'long' format.
+  
+- Class: text
+  Output: Wide data has multiple columns whose names are actually data. For example, a data frame might have separate columns for each year of data. This is untidy -- each row contains more than one observation and each column is not a distinct variable.
 
 - Class: cmd_question
-  Output: The {tidyr} package has a built-in dataset that's wide and untidy. Type 'table4a' and hit enter to see it
+  Output: The {tidyr} package has a built-in dataset that's wide and untidy. Type 'table4a' and hit enter to see it.
   CorrectAnswer: tidy4a
   AnswerTests: omnitest(correctVal = 'table4a')
   Hint: Type 'table4a' (without quotation marks) and hit enter.
 
 - Class: text 
-  Output: Did you notice the yearly data is in separate columns (1999 and 2000)? This means the data is wide -- it has two observations per row -- and is therefore untidy. The gather() function will help us fix this.
-
+  Output: Did you notice the yearly data is in separate columns (1999 and 2000)? We should gather these column name into a new column (the 'key') and put their corresponding data into its own column (the 'value').
+  
 - Class: text
-  Output: gather() needs four things -- (1) the data frame name (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) the 'key' argument, a name ("year") for the column we're gathering into, and (4) the 'value' argument, a new name ("cases") for the new data column. 
+  Output: gather() needs four things -- (1) the data frame name (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) a name for the column we're gathering into, in the form 'key = "year"', and (4) a name for the corresponding data column, in the form 'value = "cases"'. 
 
 - Class: cmd_question
   Output: Use the gather() function to make table4a tidy.
@@ -179,7 +182,7 @@
   Output: The separate() function splits data by some delimiter and puts each part into its own column. Supply (1) the data frame name, (2) the column that needs separating, (3) the delimiter, (4) a vector of column names to received the separated data.
 
 - Class: cmd_question
-  Output: Use separate on table3 to split the 'rate' column by '/' into new columns named 'cases' and 'pop'.
+  Output: Use separate() on table3 to split the 'rate' column by '/' into new columns named 'cases' and 'pop'.
   CorrectAnswer: separate(table3, rate, sep = "/", into = c("cases", "pop"))
   AnswerTests: any_of_exprs('separate(table3, rate, into = c("cases", "pop"))', 'separate(table3, rate, "/", into = c("cases", "pop"))', 'separate(table3, rate, sep = "/", into = c("cases", "pop"))')
   Hint: Use the form separate(dataframe, col_to_separate, sep = "/", into = c("new_col_1", "new_col_2"))
@@ -203,20 +206,22 @@
 - Class: cmd_question
   Output: Use unite() on table5 to combine the 'century' and 'year' columns with a blank delimiter ("") into a new column ("year").
   CorrectAnswer: unite(table5, century, year, sep = "", col = "year")
-  AnswerTests: omnitest(correctVal = '')
+  AnswerTests: omnitest(correctVal = 'unite(table5, century, year, sep = "", col = "year")')
   Hint: Your answer should be in the form unite(dataframe, col_to_unite_1, col_to_unite_2, sep = "/", col = "new_col")
 
 # Test: group
 
-# Group: expand tables
+# Group: List-columns ---
+# Function: nest()
+# Function: unnest()
+# Test: group
+
+# Group: expand tables ---
 # Function: complete()
 # Function: expand()
 # Test: group
 
-# Group: List-columns
-# Function: nest()
-# Function: unnest()
-# Test: group
+
 
 # Test knowledge of package
 
