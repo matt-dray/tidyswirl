@@ -5,21 +5,22 @@
   Type: Standard
   Version: 2.4.3
 
-# Intro: package purpose
+# Intro ---
+
+# Single sentence purpose
 
 - Class: text
-  Output: The {tidyr} package helps you make your dataset tidy.
+  Output: The {tidyr} package helps you make your data frame tidy.
+
+# Short definition/expansion
 
 - Class: text
-  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. The tidyverse packages use tidy data for simplicity consistency. 
+  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. The tidyverse packages prefer tidy data for simplicity and consistency. 
+
+# Tidyverse context
 
 - Class: text
-  Output: You're likely to use {tidyr} after you've read in your data with {readr} or {tibble} so you can prepare it for further manipulation with {dplyr}.
-
-# Intro: relevant tidyverse cheatsheet
-
-- Class: text
-  Output: Get the RStudio cheatsheet for {tidyr} at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
+  Output: Where is {tidyr} used in a tidyverse workflow? You're likely to use {tidyr} after you've read in your data with {readr} or {tibble} so you can prepare it for further manipulation with {dplyr}.
 
 # Package installation
 
@@ -36,12 +37,12 @@
   Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
 
 - Class: text
-  Output: Great, the {tidyr} package is installed and loaded. Now we're going to look at some of the its functions. You'll see how to reshape your data frame, deal with missing values and split the content of cells. 
+  Output: Great, the {tidyr} package is installed and loaded. Now we're going to look at some of its functions.
 
 # Group: reshaping data ---
 
 - Class: text
-  Output: We'll start with two functions for reshaping a data frame -- gather() and spread() -- to get it into a tidy format. 
+  Output: We'll start with two functions -- gather() and spread() -- for reshaping a data frame into a tidy format. 
 
 # Function: gather()
 
@@ -221,8 +222,14 @@
 # Function: expand()
 # Test: group
 
+# Test knowledge of package ---
 
+# Outro: what have we learnt? ---
 
-# Test knowledge of package
+# Outro: links
 
-# Outro: 
+- Class: text
+  Output: The tidyverse page for the {tidyr} package is <insert URL>
+
+- Class: text
+  Output: Get the data import cheatsheet from RStudio at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf

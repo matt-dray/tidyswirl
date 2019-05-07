@@ -5,24 +5,41 @@
   Type: Standard
   Version: 2.4.3
 
+# Intro ---
+
+# Single sentence purpose
+
 - Class: text
-  Output: A data frame is a convenient way of storing data that can be expressed as observations (rows) and variables (columns). This lesson is about creating and handling data frames using the tidyverse package {tibble}.
+  Output: The {tibble} package helps you create, convert and handle data frames.
+
+# Short definition/expansion
+
+- Class: text
+  Output: A data frame is a convenient format for tabular data that has observations (rows) and variables (columns). A tibble-class data frame has some benefits over the default data.frame class.
+
+# Tidyverse context
+
+- Class: text
+  Output: Where is {tibble} used in a tidyverse workflow? After creating a tibble, you might use {tidyr} to help make it tidy (one row per observation, one column per variable) and then {dplyr} for further manipulation.
 
 # Install package and load it
 
 - Class: cmd_question
-  Output: First you need to install the {tibble} package to your computer with install.packages("tibble"). If you've already installed it you can skip this step by typing skip().
+  Output: You first need to install {tibble} into your computer's package library. Run install.packages("tibble"), or skip() if you've installed it before.
   CorrectAnswer: if (!require("tibble")) install.packages("tibble")
-  AnswerTests: any_of_exprs('install.packages("tibble")', 'install.packages(pkgs = "tibble")', 'if (!require("tibble")) install.packages("tibble")')
+  AnswerTests: any_of_exprs('install.packages("tibble")', 'install.packages(pkgs = "tibble")', 'if (!require("tibble")) install.packages("tibble")', 'skip()')
   Hint: Remember to type quotation marks around "tibble" when you pass it to the function.
   
 - Class: cmd_question
-  Output: Now supply the package name to the library() function so we can load the package into our workspace and access its functions.
+  Output: Access {tibble}'s functions by calling it from your computer's package library. Run library(tibble).
   CorrectAnswer: library(tibble)
   AnswerTests: any_of_exprs('library("tibble")', 'library(tibble)', 'library(package = "tibble")')
-  Hint: Write the package name between the brackets of library(). You don't have to use quotation marks around the package name.
+  Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
 
-# as_tibble/output benefits
+- Class: text
+  Output: Great, the {tibble} package is installed and loaded. Now we're going to look at some of the its functions.
+
+# Group: tibble creation
 
 - Class: text
   Output: The {tibble} package simplifies data frames in R. Let's take a look at an example. The 'airquality' dataset is built into R and is of class 'data.frame'. Let's compare the output from 'airquality' when it has the class data.frame and the class tibble.
@@ -35,7 +52,9 @@
 
 - Class: text
   Output: Calling the airquality data.frame object resulted in R printing all 153 of its rows, which flooded the console.
-  
+
+# Function: as_tibble()
+
 - Class: text
   Output: What can we do to make this output more user-friendly? We can change its class to make it a tibble object using the as_tibble() from the {tibble} package. What does a tibble output look like?
   
@@ -44,6 +63,8 @@
   CorrectAnswer: as_tibble(airquality)
   AnswerTests: any_of_exprs('as_tibble(airquality)', 'as_tibble(x = airquality)')
   Hint: Type as_tibble() with 'airquality' (without quotation marks) between the brackets.
+
+# Test: as_tibble()
 
 - Class: mult_question
   Output: Compare the data.frame output to the tibble output. Which of the following is true?
@@ -55,7 +76,7 @@
 - Class: text
   Output: When printed, tibbles limit the output to 10 rows and report the number of rows omitted. Tibble outputs also report the dimensions (153 rows by 6 columns) and column types (like <int> for integers). Colour is also used to differentiate data from metadata, while missing values (NA) are highlighted in red as a warning (as are negative values).
 
-# tibble()
+# Function: tibble()
 
 - Class: text
   Output: You can create tibbles from scratch; you don't just have to convert to them from objects with the data.frame class. There are two functions for this, which are tibble() and tribble().
@@ -72,7 +93,7 @@
 - Class: text
   Output: So tibble() lets us build a data frame column by column. First you specified the 'animals' column, then the 'legs' column.
 
-# tribble()
+# Function: tribble()
 
 - Class: text
   Output: You can also construct a tibble object row-by-row by using the tribble() function (the 'r' in 'tribble' stands for 'rows', probably). This makes it easy to copy-paste the contents of some external table into R and make it into a data frame with only small changes.
@@ -89,7 +110,7 @@
 - Class: text
   Output: So we got the same outputs from both the tibble() and tribble().
 
-# enframe()
+# Function: enframe()
 
 - Class: text
   Output: The tidyverse emphasises the use of tidy data frames, where each row represents a single observation. As such, many tidyverse tools operate on 'two-dimensional' (tabular) data rather than 'one-dimensional' (vector) data. How can we 'frame' our vector to a tibble so it's ready for data manipulation with the tidyverse?
@@ -109,10 +130,12 @@
 - Class: text
   Output: You started with a character vector, a 'data sequence' of values, and ended up with a data frame. Now it's ready for manipulation with other tidyverse packages like {dplyr}. Note that you can 'undo' this process by using deframe() to go from the data frame to the vector.
 
-# add_row() and add_column()
+# Group: augment tibbles
 
 - Class: text
-  Output: Once we've created a tibble, we can add new data with add_row() and add_column(). We'll practice using a tibble called 'df' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
+  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using a tibble called 'df' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
+
+# Function: add_row()
 
 - Class: text
   Output: You can use add_row() by supplying the name of the dataframe and then the value you'd like to add to each column along the new row, in the form add_row(dataframe_name, col1 = "a", col2 = 1)
@@ -126,8 +149,10 @@
 - Class: text
   Output: See how 
 
+# Function: add_column()
+
 - Class: text
-  Output: You declare new columns in add_column() as you did for tibble(), using the form 'new_col = c("a", "b", "c")' inside the function.
+  Output: You declare new columns with add_column() in the same way you did for tibble(), using the form 'new_col = c("a", "b", "c")' inside the function.
 
 - Class: cmd_question
   Output: Add a column to the df tibble called 'wings' and use c() to supply a vector of the number of wings each animal has.
@@ -135,4 +160,12 @@
   AnswerTests: omnitest(correctExpr='add_column(df, wings = c(0, 0, 2))')
   Hint: In the add_column() function you need to supply the tibble name (df) first and then values for the new 'wings' column with c().
 
-# closing test
+# Outro: what have we learnt?
+
+# Outro: links
+
+- Class: text
+  Output: The tidyverse page for the {tibble} package is <insert URL>
+
+- Class: text
+  Output: Get the data import cheatsheet from RStudio at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
