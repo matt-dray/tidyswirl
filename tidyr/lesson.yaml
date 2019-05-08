@@ -139,16 +139,23 @@
   AnswerTests: omnitest(correctVal = 'drop_na(table_na, x2)')
   Hint: Type 'table_na' and 'x2' into the brackets of drop_na() separated by a comma.
 
+- Class: text
+  Output: So the columns that contained an NA in the x2 column are gone.
+
+
 # Function: replace_na()
 
 - Class: text
   Output: replace_na() lets you swap NA values for another value. You supply (1) the name of the data frame and (2) a list containing the column to convert and value to replace NAs with, in the form list(col_name = "replacement_value").
 
 - Class: cmd_question
-  Output: Use replace_na() to convert the NA values in the x2 column of table_na to a 1.
-  CorrectAnswer: replace_na(table_na, list(x2 = 1))
-  AnswerTests: omnitest(correctVal = 'replace_na(table_na, list(x2 = 1))')
-  Hint: Supply table_na as the first argument to replace_na() and list(x2 = 1) as the second argument.
+  Output: Use replace_na() to convert the NA values in the x2 column of table_na to a 0.
+  CorrectAnswer: replace_na(table_na, list(x2 = 0))
+  AnswerTests: omnitest(correctVal = 'replace_na(table_na, list(x2 = 0))')
+  Hint: Supply table_na as the first argument to replace_na() and list(x2 = 0) as the second argument.
+
+- Class: text
+  Output: Each instance of NA in the x2 column of table_na is now 0. You may want to do this if a value in the dataset isn't 'missing' per se.
 
 # Function: fill()
 
@@ -160,6 +167,9 @@
   CorrectAnswer: fill(table_na, x2)
   AnswerTests: omnitest(correctVal = 'fill(table_na, x2)')
   Hint: Pass table_na as the first argument to fill() and x2 as the second argument.
+
+- Class: text
+  Output: See how the NAs in rows 2 and 3 of column x2 have been replaced with a 1? And the NA in row 5 of x2 is now a 3? The NAs have been replaced by the closest valid value above them in that column.
 
 # Test: group
 
@@ -175,7 +185,7 @@
   Hint: Type 'table3' and press enter to see the table in the console.
 
 - Class: text
-  Output: The 'rate' column contains two data items with a forward slash ('/') between them.
+  Output: The 'rate' column contains two data items with a forward slash ('/') between them, like '745/19987071' in the first row. These are two distinct bits of data that need to be separated.
 
 # Function: separate()
 
@@ -188,6 +198,9 @@
   AnswerTests: any_of_exprs('separate(table3, rate, into = c("cases", "pop"))', 'separate(table3, rate, "/", into = c("cases", "pop"))', 'separate(table3, rate, sep = "/", into = c("cases", "pop"))')
   Hint: Use the form separate(dataframe, col_to_separate, sep = "/", into = c("new_col_1", "new_col_2"))
 
+- Class: text
+  Output: See how the values in the 'rate' column of the original dataset are now separated into the 'cases' and 'pop' columns? For example, '745/19987071' is now separated into '745' and '19987071' across two columns.
+
 # Function: separate_rows()
 
 - Class: text
@@ -199,16 +212,22 @@
   AnswerTests: omnitest(correctVal = 'separate_rows(table3, rate, sep = "/")')
   Hint: Your answer should be in the form separate_rows(dataframe, col_to_separate, sep = "/")
 
+- Class: text
+  Output: So now the values in the rate column have been separated into different rows rather than different columns. For example, '745/19987071' has now been separated into '745' and '19987071' across two rows.
+
 # Function: unite()
 
 - Class: text
   Output: We can also unite() columns, which is the opposite of separating them. You pass (1) the name of the data frame, (2) the columns from which data will be united, (3) the delimiter, (4) a name for the column that will hold the newly-united data. 
 
 - Class: cmd_question
-  Output: Use unite() on table5 to combine the 'century' and 'year' columns with a blank delimiter ("") into a new column ("year").
-  CorrectAnswer: unite(table5, century, year, sep = "", col = "year")
-  AnswerTests: omnitest(correctVal = 'unite(table5, century, year, sep = "", col = "year")')
+  Output: Use unite() on table5 to combine the 'century' and 'year' columns with a blank delimiter ("") into a new column ("full_year").
+  CorrectAnswer: unite(table5, century, year, sep = "", col = "full_year")
+  AnswerTests: omnitest(correctVal = 'unite(table5, century, year, sep = "", col = "full_year")')
   Hint: Your answer should be in the form unite(dataframe, col_to_unite_1, col_to_unite_2, sep = "/", col = "new_col")
+
+- Class: text
+  Output: The values from the 'century' and 'year' column have been united -- '19' and '99' in the first row are now joined as '1999' in the 'full_year' column
 
 # Test: group
 
@@ -225,6 +244,9 @@
 # Test knowledge of package ---
 
 # Outro: what have we learnt? ---
+
+- Class: text
+  Output: So what did we learn in this lesson? We've seen how {tidyr} can be used to tidy a data frame by (1) reshaping it with gather() and spread(), (2) deal with missing values using drop_na(), replace_na() and fill(), and (3) split and join columns and rows with separate() and unite()
 
 # Outro: links
 
