@@ -15,7 +15,7 @@
 # Short definition/expansion
 
 - Class: text
-  Output: A data frame is a convenient format for tabular data that has observations (rows) and variables (columns). A tibble-class data frame has some benefits over the default data.frame class.
+  Output: A data frame is a convenient format for tabular data that has observations (rows) and variables (columns). Data frame objects have the class 'data.frame' by default -- you can check this at any time with class(dataframe_name). A tibble-class data frame (or 'tbl_df') shares the benefits of data.frame, but also has some advantages.
 
 # Tidyverse context
 
@@ -39,13 +39,13 @@
 - Class: text
   Output: Great, the {tibble} package is installed and loaded. Now we're going to look at some of the its functions.
 
-# Group: tibble creation
+# Group: tibble conversion
 
 - Class: text
   Output: The {tibble} package simplifies data frames in R. Let's take a look at an example. The 'airquality' dataset is built into R and is of class 'data.frame'. Let's compare the output from 'airquality' when it has the class data.frame and the class tibble.
 
 - Class: cmd_question
-  Output: Run 'airquality' to see an example of the typical output from a data.frame object.
+  Output: Run 'airquality' to see an example of the typical output from an object with class data.frame.
   CorrectAnswer: airquality
   AnswerTests: any_of_exprs('print(airquality)', 'airquality')
   Hint: Type 'airquality' (without quote marks) at the prompt.
@@ -56,7 +56,7 @@
 # Function: as_tibble()
 
 - Class: text
-  Output: What can we do to make this output more user-friendly? We can change its class to make it a tibble object using the as_tibble() from the {tibble} package. What does a tibble output look like?
+  Output: What can we do to make this output more user-friendly? We can change it to a tibble-class object (a tbl_df) using the as_tibble() function. What does a tibble output look like?
   
 - Class: cmd_question
   Output: Use as_tibble() to convert the airquality data frame from the data.frame class to the tibble class.
@@ -64,7 +64,9 @@
   AnswerTests: any_of_exprs('as_tibble(airquality)', 'as_tibble(x = airquality)')
   Hint: Type as_tibble() with 'airquality' (without quotation marks) between the brackets.
 
-# Test: as_tibble()
+
+
+# Group test
 
 - Class: mult_question
   Output: Compare the data.frame output to the tibble output. Which of the following is true?
@@ -75,6 +77,8 @@
 
 - Class: text
   Output: When printed, tibbles limit the output to 10 rows and report the number of rows omitted. Tibble outputs also report the dimensions (153 rows by 6 columns) and column types (like <int> for integers). Colour is also used to differentiate data from metadata, while missing values (NA) are highlighted in red as a warning (as are negative values).
+
+# Group: tibble creation
 
 # Function: tibble()
 
@@ -162,10 +166,13 @@
 
 # Outro: what have we learnt?
 
+- Class: text
+  Output: 
+
 # Outro: links
 
 - Class: text
-  Output: The tidyverse page for the {tibble} package is <insert URL>
+  Output: The tidyverse webpage for the {tibble} package is https://tibble.tidyverse.org/
 
 - Class: text
   Output: Get the data import cheatsheet from RStudio at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf

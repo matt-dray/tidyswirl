@@ -15,7 +15,7 @@
 # Short definition/expansion
 
 - Class: text
-  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. The tidyverse packages prefer tidy data for simplicity and consistency. 
+  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. The tidyverse packages prefer tidy data for simplicity and consistency.
 
 # Tidyverse context
 
@@ -229,7 +229,10 @@
 # Outro: links
 
 - Class: text
-  Output: The tidyverse page for the {tidyr} package is <insert URL>
+  Output: The tidyverse webpage for the {tidyr} package is https://tidyr.tidyverse.org/
 
 - Class: text
   Output: Get the data import cheatsheet from RStudio at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
+
+- Class: text
+  Output: Read about tidy data from the Journal of Statistical Software https://www.jstatsoft.org/article/view/v059i10
