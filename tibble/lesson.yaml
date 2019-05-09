@@ -165,7 +165,7 @@
 # Outro: what have we learnt?
 
 - Class: text
-  Output: We've seen how to (1) convert data.frame-class objects to tibble-class objects with as_tibble(), (2) create tibbles with tibble(), tribble() and enframe(), and (3) and expanded a tibble with add_column() and add_row().
+  Output: So what did we learn in this lesson? We've seen how to (1) convert data.frame-class objects to tibble-class objects with as_tibble(), (2) create tibbles with tibble(), tribble() and enframe(), and (3) and expanded a tibble with add_column() and add_row().
 
 # Outro: links
 

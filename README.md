@@ -26,14 +26,14 @@ The course is aimed at people with some knowledge of R, but not necessarily grea
 
 This course should cover the [main tidyverse packages](https://www.tidyverse.org/packages/):
 
-1. {readr} (todo)
-1. {tibble}[^tibble] (underway)
-1. {tidyr}[^tidyr] (underway)
-1. {dplyr} (todo)
-1. {ggplot2} (todo)
-1. {purrr} (todo)
-1. {stringr} (todo)
-1. {forcats} (todo)
+1. readr (todo)
+1. tibble[^tibble] (underway)
+1. tidyr[^tidyr] (underway)
+1. dplyr (todo)
+1. ggplot2 (todo)
+1. purrr (todo)
+1. stringr (todo)
+1. forcats (todo)
 
 Please [feel free to contribute](https://github.com/matt-dray/tidyswirl/blob/master/CONTRIBUTING.md) to the development of these courses.
 
@@ -54,8 +54,6 @@ You can uninstall the course with `uninstall_course("tidyswirl")`.
 
 [^swirl]: Sean Kross, Nick Carchedi, Bill Bauer and Gina Grdina (2017). swirl: Learn R, in R. R package version 2.4.3. https://CRAN.R-project.org/package=swirl
 [^swirlify]: Sean Kross and Nick Carchedi (2018). swirlify: A Toolbox for Writing 'swirl' Courses. R package version 0.5.2. https://CRAN.R-project.org/package=swirlify
-
 [^tibble]: Kirill Müller and Hadley Wickham (2019). tibble: Simple Data Frames. R package version 2.1.1. https://CRAN.R-project.org/package=tibble
 [^tidyr]: Hadley Wickham and Lionel Henry (2019). tidyr: Easily Tidy Data with 'spread()' and 'gather()' Functions. R package version 0.8.3. https://CRAN.R-project.org/package=tidyr
-
 [^package-format]: Note that this course teaches on a package-by-package basis, even though you would use functions from multiple packages in a typical tidyverse workflow. This is [recorded in an issue](https://github.com/matt-dray/tidyswirl/issues/6).
