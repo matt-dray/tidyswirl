@@ -14,7 +14,9 @@ New courses can be downloaded from the [Swirl Course Network](http://swirlstats.
 
 ### Tidyswirl
 
-This repository contains a Swirl course where each lesson is about one the major packages of [the tidyverse](https://www.tidyverse.org/). The goal is to promote personal and active learning of the tidyverse suite, which continues to grow in popularity in the R community.[^package-format]
+This repository contains a Swirl course where each lesson is about one the major packages of [the tidyverse](https://www.tidyverse.org/). The goal is to promote personal and active learning of the tidyverse suite, which continues to grow in popularity in the R community.
+
+Note that this course teaches on a package-by-package basis, even though you would use functions from multiple packages in a typical tidyverse workflow. This is [recorded in an issue](https://github.com/matt-dray/tidyswirl/issues/6).
 
 ## Use Tidyswirl
 
@@ -63,5 +65,3 @@ You can uninstall the course with `uninstall_course("tidyswirl")`.
 
 * Kirill Müller and Hadley Wickham (2019). tibble: Simple Data Frames. R package version 2.1.1. https://CRAN.R-project.org/package=tibble
 * Hadley Wickham and Lionel Henry (2019). tidyr: Easily Tidy Data with 'spread()' and 'gather()' Functions. R package version 0.8.3. https://CRAN.R-project.org/package=tidyr
-
-[^package-format]: Note that this course teaches on a package-by-package basis, even though you would use functions from multiple packages in a typical tidyverse workflow. This is [recorded in an issue](https://github.com/matt-dray/tidyswirl/issues/6).
