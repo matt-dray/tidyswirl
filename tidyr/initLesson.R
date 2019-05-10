@@ -4,6 +4,6 @@
       # throughout the lesson.
 
 table_na <- data.frame(
-  x1 = LETTERS[1:5],
-  x2 = c(1, NA, NA, 3, NA)
+  x1 = c("A", NA, NA, "B", NA, NA),
+  x2 = c(1, NA, 2, 3, 1, NA)
 )

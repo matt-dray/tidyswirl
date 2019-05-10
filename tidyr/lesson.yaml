@@ -59,7 +59,7 @@
   Hint: Type 'table4a' (without quotation marks) and hit enter.
 
 - Class: text 
-  Output: Did you notice the yearly data is in separate columns (1999 and 2000)? We should gather these column name into a new column (the 'key') and put their corresponding data into its own column (the 'value').
+  Output: Did you notice the yearly data is in separate columns (1999 and 2000)? We should gather these column names into a new column (the 'key') and put their corresponding data into its own column (the 'value').
   
 - Class: text
   Output: gather() needs four things -- (1) the data frame name (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) a name for the column we're gathering into, in the form 'key = "year"', and (4) a name for the corresponding data column, in the form 'value = "cases"'. 
@@ -95,7 +95,7 @@
 
 - Class: cmd_question
   Output: Use the spread() function to make table2 tidy.
-  CorrectAnswer: gather(table2, type, count)
+  CorrectAnswer: spread(table2, type, count)
   AnswerTests: omnitest(correctVal = 'spread(table2, type, count)')
   Hint: Use the form spread(dataframe_name, column_to_spread, column_of_data).
 
@@ -105,7 +105,7 @@
 # Test: group
 
 - Class: mult_question
-  Output: Which of these are properties of 'tidy' data? (A) Thre's one row per observation, (B) there's one column per variable (C) long data is tidier than wide data, (D) wide data is tidier than long data.
+  Output: Which of these are properties of 'tidy' data? (A) There's one row per observation, (B) there's one column per variable (C) long data is tidier than wide data, (D) wide data is tidier than long data.
   AnswerChoices: All of them; (A) and (B); (A), (B) and (C); (A), (B) and (D); (A) only
   CorrectAnswer: (A) and (B)
   AnswerTests: omnitest(correctVal='(A) and (B)')
@@ -126,7 +126,7 @@
   Hint: Type 'table_na' and press enter to see the table in the console.
 
 - Class: text
-  Output: The table has two columns and five rows. Column x2 has a mixture of data and missing values (NA).
+  Output: The table has two columns and five rows. Both columns have a mixture of data and missing values (NA).
 
 # Function: drop_na()
 
@@ -140,36 +140,38 @@
   Hint: Type 'table_na' and 'x2' into the brackets of drop_na() separated by a comma.
 
 - Class: text
-  Output: So the columns that contained an NA in the x2 column are gone.
-
+  Output: So the rows that contained an NA in the x2 column are gone. We only have four rows now.
 
 # Function: replace_na()
 
 - Class: text
-  Output: replace_na() lets you swap NA values for another value. You supply (1) the name of the data frame and (2) a list containing the column to convert and value to replace NAs with, in the form list(col_name = "replacement_value").
+  Output: Sometimes NAs can be safely replaced with a value. replace_na() lets you do this. You supply (1) the name of the data frame and (2) a list containing the column to convert and value to replace NAs with, in the form list(col_name = "replacement_value").
 
 - Class: cmd_question
-  Output: Use replace_na() to convert the NA values in the x2 column of table_na to a 0.
+  Output: Use replace_na() to convert the NA values in the x2 column of table_na to a zero.
   CorrectAnswer: replace_na(table_na, list(x2 = 0))
   AnswerTests: omnitest(correctVal = 'replace_na(table_na, list(x2 = 0))')
   Hint: Supply table_na as the first argument to replace_na() and list(x2 = 0) as the second argument.
 
 - Class: text
-  Output: Each instance of NA in the x2 column of table_na is now 0. You may want to do this if a value in the dataset isn't 'missing' per se.
+  Output: Each instance of NA in the x2 column of table_na has been replaced with a zero.
 
 # Function: fill()
 
 - Class: text
-  Output: The fill() function will replace NAs in a column with the the closest valid value above it.
-
-- Class: cmd_question
-  Output: Use fill() to 'fill down' the x2 column and replace the NAs.
-  CorrectAnswer: fill(table_na, x2)
-  AnswerTests: omnitest(correctVal = 'fill(table_na, x2)')
-  Hint: Pass table_na as the first argument to fill() and x2 as the second argument.
+  Output: Sometimes only the first row of a group of data will be labelled in a column (often true if reading data from a spreadsheet). For example, column x1 of table_na has two groups --  A and B -- but only the first row of each is labelled. We want every row to contain this information, not just the first one.
 
 - Class: text
-  Output: See how the NAs in rows 2 and 3 of column x2 have been replaced with a 1? And the NA in row 5 of x2 is now a 3? The NAs have been replaced by the closest valid value above them in that column.
+  Output: You can solve this with the fill() function, which replaces NAs in a column with the the closest valid value above it.
+
+- Class: cmd_question
+  Output: Use fill() to 'fill down' the x1 column and replace the NAs.
+  CorrectAnswer: fill(table_na, x1)
+  AnswerTests: omnitest(correctVal = 'fill(table_na, x1)')
+  Hint: Pass table_na as the first argument to fill() and x1 as the second argument.
+
+- Class: text
+  Output: The NAs in rows 2 and 3 of column x2 have been replaced with 'A' and the NAs in rows 5 and 6 are now a 'B'.
 
 # Test: group
 
