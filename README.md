@@ -10,7 +10,7 @@ _Under development -- [feel free to contribute](https://github.com/matt-dray/tid
 
 The [{swirl}](https://swirlstats.com/) package contains an interactive teaching tool for learning [R](https://www.r-project.org/about.html) from within R itself -- you're prompted with questions and answer directly into the console.
 
-New courses can be downloaded from the [Swirl Course Network](http://swirlstats.com/scn/). Anyone can create and share a course and the [{swirlify}](http://swirlstats.com/swirlify/) package makes this much easier.
+New courses can be downloaded from the [Swirl Course Network](http://swirlstats.com/scn/). Anyone can create and share a course and the [{swirlify}](http://swirlstats.com/swirlify/) package makes this much easier. I wrote [a blogpost about using Swirlify to make Tidyswirl](https://www.rostrum.blog/2019/05/10/swirlify/).
 
 ### Tidyswirl
 
