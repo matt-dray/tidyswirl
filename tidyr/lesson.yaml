@@ -10,12 +10,12 @@
 # Single sentence purpose
 
 - Class: text
-  Output: The {tidyr} package helps you make your data frame tidy.
+  Output: The {tidyr} package helps you organise your data frame to make it tidy.
 
 # Short definition/expansion
 
 - Class: text
-  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. The tidyverse packages prefer tidy data for simplicity and consistency.
+  Output: Tabular data is 'tidy' if there's one variable per column and one row per observation. Tidyverse packages prefer tidy data for simplicity and consistency.
 
 # Tidyverse context
 
@@ -25,14 +25,14 @@
 # Package installation
 
 - Class: cmd_question
-  Output: You first need to install {tidyr} into your computer's package library. Run install.packages("tidyr"), or skip() if you've installed it before.
+  Output: You first need to install {tidyr} (version 1.0.0 or greater) into your computer's package library. Run install.packages("tidyr") to install it, or skip() if you've installed version 1.0.0 or greater before.
   CorrectAnswer: if (!require("tidyr")) install.packages("tidyr")
   AnswerTests: any_of_exprs('install.packages("tidyr")', 'install.packages(pkgs = "tidyr")', 'if (!require("tidyr")) install.packages("tidyr")', 'skip()')
   Hint: Remember to type quotation marks around "tidyr" when you pass it to the function.
   
 - Class: cmd_question
   Output: Access {tidyr}'s functions by calling it from your computer's package library. Run library(tidyr).
-  CorrectAnswer: library(tibble)
+  CorrectAnswer: library(tidyr)
   AnswerTests: any_of_exprs('library("tidyr")', 'library(tidyr)', 'library(package = "tidyr")')
   Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
 
@@ -42,74 +42,74 @@
 # Group: reshaping data ---
 
 - Class: text
-  Output: We'll start with two functions -- gather() and spread() -- for reshaping a data frame into a tidy format. 
+  Output: We'll start with two functions -- pivot_longer() and pivot_wider() -- for reshaping a data frame into a tidy format. 
 
-# Function: gather()
+# Function: pivot_longer()
 
 - Class: text
-  Output: gather() helps us reshape a dataset from a 'wide' format to a 'long' format.
+  Output: pivot_longer() helps us reshape a dataset from a 'wide' format to a 'long' format.
   
 - Class: text
-  Output: Wide data has multiple columns whose names are actually data. For example, a data frame might have separate columns for each year of data. This is untidy -- each row contains more than one observation and each column is not a distinct variable.
+  Output: Wide data has multiple columns whose names are actually data too. For example, a data frame might have separate columns for each year of data. This is untidy -- each row would contain more than one observation (we would have as many observations as there are years) and each column is not a distinct variable (they're all years).
 
 - Class: cmd_question
   Output: The {tidyr} package has a built-in dataset that's wide and untidy. Type 'table4a' and hit enter to see it.
-  CorrectAnswer: tidy4a
+  CorrectAnswer: table4a
   AnswerTests: omnitest(correctVal = 'table4a')
   Hint: Type 'table4a' (without quotation marks) and hit enter.
 
 - Class: text 
-  Output: Did you notice the yearly data is in separate columns (1999 and 2000)? We should gather these column names into a new column (the 'key') and put their corresponding data into its own column (the 'value').
+  Output: Did you notice separate columns for each year that an observation was made (1999 and 2000)? We should gather these column names into a new column (the 'names_to' argument) and put their corresponding values into a new column too (the 'values_to' argument).
   
 - Class: text
-  Output: gather() needs four things -- (1) the data frame name (table4a), (2) the columns to be gathered (`1999`, `2000`), (3) a name for the column we're gathering into, in the form 'key = "year"', and (4) a name for the corresponding data column, in the form 'value = "cases"'. 
+  Output: pivot_longer() needs four things -- (1) the data frame name (table4a) (2) a vector of the columns to be gathered (c(`1999`, `2000`)), (3) a name for the new column we're gathering into ("year") and (4) a name for the new column of corresponding values ("cases"). Note that we quote the new column names.
 
 - Class: cmd_question
-  Output: Use the gather() function to make table4a tidy.
-  CorrectAnswer: gather(table4a, `1999`, `2000`, key = "year", value = "cases")
-  AnswerTests: omnitest(correctVal = 'gather(table4a, `1999`, `2000`, key = "year", value = "cases")')
-  Hint: Use the form gather(dataframe, column_to_gather1, column_to_gather2, key = "col_name", value = "col_name")
+  Output: Use the pivot_longer() function to make table4a tidy.
+  CorrectAnswer: pivot_longer(table4a, c(`1999`, `2000`), "year", "cases")
+  AnswerTests: any_of_exprs('pivot_longer(table4a, c(`1999`, `2000`), "year", "cases")', 'pivot_longer(table4a, cols = c(`1999`, `2000`), names_to = "year", values_to = "cases")')
+  Hint: Use the form pivot_longer(data = dataframe, cols = c(col1, col2), names_to = "new_col_1", values_to = "new_col_2")
 
 - Class: text
-  Output: Excellent, gather() helped tidy the data from wide to long format.
+  Output: Excellent, you used pivot_longer() to help tidy the data from wide to long format.
 
-# Function: spread()
+# Function: pivot_wider()
 
 - Class: text
-  Output: The second {tidyr} function for reshaping data is spread(). It does the opposite to gather() -- it helps us reshape from a 'long' to a 'wide' format.
+  Output: The second {tidyr} function for reshaping data is pivot_wider(). It does the opposite to pivot_longer() -- it helps us reshape from a 'long' to a 'wide' format.
 
 - Class: text
   Output: For example, we might have multiple rows for the same observation. For each country-year combination we might have a column with two different types of data in it that should really be in separate columns. Let's take a look at an example.
 
 - Class: cmd_question
-  Output: The {tidyr} package has a built-in dataset that's long and untidy. Type 'table2' and hit enter to see it
-  CorrectAnswer: tidy2
+  Output: The {tidyr} package has a built-in dataset that's long and untidy. Type 'table2' and hit enter to see it.
+  CorrectAnswer: table2
   AnswerTests: omnitest(correctVal = 'table2')
   Hint: Type 'table2' (without quotation marks) and hit enter.
 
 - Class: text
-  Output: Did you notice the 'type' column and its corresponding 'count' column contain two types of data ('cases' and 'population')? We need to spread the unique values of 'type' into separate columns filled with the 'count' data.
+  Output: Did you notice the 'type' column and its corresponding 'count' column contain two types of data ('cases' and 'population')? We need to widen the unique values of 'type' (the argument 'names_from') into separate columns filled with the 'count' data (the 'values_from' argument).
 
 - Class: text
-  Output: To do this, you need to give spread() three things -- (1) the name of the data frame (table2a), (2) the name of the column (type) whose unique values will become new columns, and (3) the name of the column (count) that has the data that will fill the new columns.
+  Output: To do this, you need to give pivot_wider() three things -- (1) the name of the data frame (table2a), (2) the name of the column (type) whose unique values will become new columns, and (3) the name of the column (count) that has the data that will fill the new columns.
 
 - Class: cmd_question
-  Output: Use the spread() function to make table2 tidy.
-  CorrectAnswer: spread(table2, type, count)
-  AnswerTests: omnitest(correctVal = 'spread(table2, type, count)')
-  Hint: Use the form spread(dataframe_name, column_to_spread, column_of_data).
+  Output: Use the pivot_wider() function to make table2 tidy.
+  CorrectAnswer: pivot_wider(table2, type, count)
+  AnswerTests: any_of_expr('pivot_wider(table2, type, count)', 'pivot_wider(data = table2, names_from = type, values_from = count)')
+  Hint: Use the form pivot_wider(data = dataframe, names_from = names_col, values_from = values_col).
 
 - Class: text
-  Output: Excellent, spread() helped tidy the data from long to wide format.
+  Output: Excellent, pivot_wider() helped tidy the data from long to wide format.
 
 # Test: group
 
 - Class: mult_question
-  Output: Which of these are properties of 'tidy' data? (A) There's one row per observation, (B) there's one column per variable (C) long data is tidier than wide data, (D) wide data is tidier than long data.
+  Output: Which of these are always properties of 'tidy' data? (A) There's one row per observation, (B) there's one column per variable (C) long data is always tidier than wide data, (D) wide data is always tidier than long data.
   AnswerChoices: All of them; (A) and (B); (A), (B) and (C); (A), (B) and (D); (A) only
   CorrectAnswer: (A) and (B)
   AnswerTests: omnitest(correctVal='(A) and (B)')
-  Hint: gather() makes wide data long and spread() does the opposite. Both create the right number of columns to allow for a single observation per row. 
+  Hint: pivot_longer() makes wide data long and pivot_wider() does the opposite. Both create the right number of columns to allow for a single observation per row.
 
 - Class: text
   Output: Okay, we're done with reshaping for now. Let's take a look at some simpler functions from {tidyr} that will help prepare data for further analysis. 
@@ -229,7 +229,7 @@
   Hint: Your answer should be in the form unite(dataframe, col_to_unite_1, col_to_unite_2, sep = "/", col = "new_col")
 
 - Class: text
-  Output: The values from the 'century' and 'year' column have been united -- '19' and '99' in the first row are now joined as '1999' in the 'full_year' column
+  Output: The values from the 'century' and 'year' column have been united -- '19' and '99' in the first row are now joined as '1999' in the 'full_year' column.
 
 # Test: group
 
@@ -248,7 +248,7 @@
 # Outro: what have we learnt? ---
 
 - Class: text
-  Output: So what did we learn in this lesson? We've seen how {tidyr} can be used to tidy a data frame by (1) reshaping it with gather() and spread(), (2) deal with missing values using drop_na(), replace_na() and fill(), and (3) split and join columns and rows with separate() and unite()
+  Output: So what did we learn in this lesson? We've seen how {tidyr} can be used to tidy a data frame by (1) reshaping it with pivot_longer() and pivot_wider(), (2) deal with missing values using drop_na(), replace_na() and fill(), and (3) split and join columns and rows with separate() and unite().
 
 # Outro: links
 
