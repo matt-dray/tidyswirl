@@ -85,18 +85,18 @@
   Output: The {tidyr} package has a built-in dataset that's long and untidy. Type 'table2' and hit enter to see it.
   CorrectAnswer: table2
   AnswerTests: omnitest(correctVal = 'table2')
-  Hint: Type 'table2' (without quotation marks) and hit enter.
+  Hint: Type table2 (without quotation marks) and hit enter.
 
 - Class: text
   Output: Did you notice the 'type' column and its corresponding 'count' column contain two types of data ('cases' and 'population')? We need to widen the unique values of 'type' (the argument 'names_from') into separate columns filled with the 'count' data (the 'values_from' argument).
 
 - Class: text
-  Output: To do this, you need to give pivot_wider() three things -- (1) the name of the data frame (table2a), (2) the name of the column (type) whose unique values will become new columns, and (3) the name of the column (count) that has the data that will fill the new columns.
+  Output: To do this, you need to give pivot_wider() three things -- (1) the name of the data frame (table2), (2) the name of the column (type) whose unique values will become new columns, and (3) the name of the column (count) that has the data that will fill the new columns.
 
 - Class: cmd_question
   Output: Use the pivot_wider() function to make table2 tidy.
-  CorrectAnswer: pivot_wider(table2, type, count)
-  AnswerTests: any_of_expr('pivot_wider(table2, type, count)', 'pivot_wider(data = table2, names_from = type, values_from = count)')
+  CorrectAnswer: pivot_wider(table2, names_from = type, values_from = count)
+  AnswerTests: any_of_exprs('pivot_wider(table2, type, count)', 'pivot_wider(data = table2, names_from = type, values_from = count)')
   Hint: Use the form pivot_wider(data = dataframe, names_from = names_col, values_from = values_col).
 
 - Class: text
@@ -131,7 +131,7 @@
 # Function: drop_na()
 
 - Class: text
-  Output: drop_na() lets you discard rows that contain an NA by supplying the name of the data frame and the column containing NA values.
+  Output: drop_na() lets you discard rows that contain an NA by supplying (1) the name of the data frame and (2) the column containing NA values.
 
 - Class: cmd_question
   Output: Use drop_na() to remove the rows of table_na that contain an NA in the x2 column.
