@@ -5,15 +5,17 @@
   Type: Standard
   Version: 2.4.3
 
-- Class: text
-  Output: Reminder -- you can type info() at any time to see your options. For example, 'bye()' will exit swirl.
+# Swirl info reminder
 
-# Intro
+- Class: text
+  Output: Reminder -- you can type info() at any time to see your options. For example, 'bye()' will exit Swirl.
+
+# Intro ---
 
 # Single sentence purpose
 
 - Class: text
-  Output: The {tibble} package helps you create, convert and handle data frames.
+  Output: The {tibble} package by Kirill Müller and Hadley Wickham is a 'modern' solution to help you create, convert and handle data frames.
 
 # Short definition/expansion
 
@@ -42,16 +44,25 @@
 - Class: text
   Output: Great, the {tibble} package is installed and loaded. Now we're going to look at some of the its functions.
 
-# Group: tibble conversion
+# Group: tibble conversion ---
 
 - Class: text
   Output: The {tibble} package simplifies data frames in R. Let's take a look at an example. The 'airquality' dataset is built into R and is of class 'data.frame'. Let's compare the output from 'airquality' when it has the class data.frame and the class tibble.
 
 - Class: cmd_question
-  Output: Run 'airquality' to see an example of the typical output from an object with class data.frame.
+  Output: First, pass 'airquality' to the class() function to see what class of object it is.
+  CorrectAnswer: class(airquality)
+  AnswerTests: omnitest(correctExpr = 'class(airquality')
+  Hint: Type 'airquality' (without quote marks) inside the brackets of class() and then hit enter.
+
+- Class: text
+  Output: So the airquality object is of the 'data.frame' class, the basic tabular format used in R.
+
+- Class: cmd_question
+  Output: Now run 'airquality' to see an example of the typical output from an object with class data.frame.
   CorrectAnswer: airquality
   AnswerTests: any_of_exprs('print(airquality)', 'airquality')
-  Hint: Type 'airquality' (without quote marks) at the prompt.
+  Hint: Type 'airquality' (without quote marks) and hit enter.
 
 - Class: text
   Output: Calling the airquality data.frame object resulted in R printing all 153 of its rows, which flooded the console.
@@ -62,16 +73,31 @@
   Output: What can we do to make this output more user-friendly? We can change it to a tibble-class object (a tbl_df) using the as_tibble() function. What does a tibble output look like?
   
 - Class: cmd_question
-  Output: Use as_tibble() to convert the airquality data frame from the data.frame class to the tibble class.
-  CorrectAnswer: as_tibble(airquality)
-  AnswerTests: any_of_exprs('as_tibble(airquality)', 'as_tibble(x = airquality)')
-  Hint: Type as_tibble() with 'airquality' (without quotation marks) between the brackets.
+  Output: Use as_tibble() to convert the airquality data frame from the data.frame class to the tibble class. Assign it (<-) to the name 'airquality_tbl'.
+  CorrectAnswer: airquality_tbl <- as_tibble(airquality)
+  AnswerTests: any_of_exprs('airquality_tbl <- as_tibble(airquality)', 'airquality_tbl <- as_tibble(x = airquality)')
+  Hint: Use the form 'object_name <- as_tibble(dataframe_name)', where the object is called airquality_tbla and the data frame is called airquality.
+  
+- Class: cmd_question
+  Output: Before we look at the output, let's check the class of this new object. Type class(airquality_tbl) and observe the output. 
+  CorrectAnswer: class(airquality_tbl)
+  AnswerTests: omnitest(correctExpr='class(airquality_tbl)')
+  Hint: Type 'class(airquality_tbl)' (without the quotes) and hit enter.
+
+- Class: text
+  Output: Aha, so it actually has three classes. It retains the data.frame class so you can work with it as though it were a data.frame, but it also takes the tibble classes of tbl_df and tbl (for now, don't worry that there are two separate tibble classes). 
+
+- Class: cmd_question
+  Output: Okey-dokey, so what does a tibble output look like? Type airquality_tbl and observe the output. 
+  CorrectAnswer: airquality_tbl
+  AnswerTests: omnitest(correctExpr='airquality_tbl')
+  Hint: Type 'airquality_tbl' (without the quotes) and hit enter.
 
 # Group test
 
 - Class: mult_question
   Output: Compare the data.frame output to the tibble output. Which of the following is true?
-  AnswerChoices: Tibbles print fewer rows; Tibbles use colour to provide meaning; Tibbles give the data type of each column; All of these are true
+  AnswerChoices: Tibbles print fewer rows by default; Tibbles use colour to provide meaning; Tibbles give the data type of each column; All of these are true
   CorrectAnswer: All of these are true
   AnswerTests: omnitest(correctVal='All of these are true')
   Hint: Take a look at the tibble that was printed after you executed as_tibble(airquality)
@@ -79,7 +105,7 @@
 - Class: text
   Output: When printed, tibbles limit the output to 10 rows and report the number of rows omitted. Tibble outputs also report the dimensions (153 rows by 6 columns) and column types (like <int> for integers). Colour is also used to differentiate data from metadata, while missing values (NA) are highlighted in red as a warning (as are negative values).
 
-# Group: tibble creation
+# Group: tibble creation ---
 
 # Function: tibble()
 
@@ -90,18 +116,24 @@
   Output: Let's create a very simple tibble object using the tibble() function. Within the function you provide column names and assign vectors to them using c(). The first vector element will be in the first row, and so on. For example, tibble(col1 = c(1:2), col2 = c("a", "b")) creates a two-column, two-row data frame where the first row has a 1 in the column 'col1' and "a" in the column 'col2'.
 
 - Class: cmd_question
-  Output: Create a tibble() with two columns ("animal" and "legs") and three rows (one each for "cat", "snake", "bird" and the typical number of legs they have).
-  CorrectAnswer: tibble(animal = c("cat", "snake", "bird"), leg_count = c(4, 0, 2))
-  AnswerTests: omnitest(correctExpr='tibble(animal = c("cat", "snake", "bird"), legs = c(4, 0, 2))')
-  Hint: Write your answer in the form tibble(col1 = c(1:2), col2 = c("a", "b"))
+  Output: Create a tibble() with two columns ("animal" and "legs") and three rows (one each for "cat", "snake" and "bird" and their typical leg count). Assign ('<-') the name 'legs_tbl'.
+  CorrectAnswer: legs_tbl <- tibble(animal = c("cat", "snake", "bird"), legs = c(4, 0, 2))
+  AnswerTests: omnitest(correctExpr='legs_tbl <- tibble(animal = c("cat", "snake", "bird"), legs = c(4, 0, 2))')
+  Hint: Write your answer in the form 'object_name <- tibble(col1 = c(1:2), col2 = c("a", "b"))'
+
+- Class: cmd_question
+  Output: Now print the tibble by calling 'legs_tbl'.
+  CorrectAnswer: legs_tbl
+  AnswerTests: omnitest(correctExpr='legs_tbl')
+  Hint: Type the object name 'legs_tbl' (without quotes) and press enter to print it.
 
 - Class: text
-  Output: So tibble() lets us build a data frame column by column. First you specified the 'animals' column, then the 'legs' column.
+  Output: So you can see that tibble() lets us build a data frame column by column. First you specified the 'animals' column, then the 'legs' column.
 
 # Function: tribble()
 
 - Class: text
-  Output: You can also construct a tibble object row-by-row by using the tribble() function (the 'r' in 'tribble' stands for 'rows', probably). This makes it easy to copy-paste the contents of some external table into R and make it into a data frame with only small changes.
+  Output: You can also construct a tibble object row-by-row by using the tribble() function (think of the 'r' in 'tribble' as meaning 'rows'). This can be handy for copy-pasting the contents of an external table into R.
 
 - Class: text
   Output: The expression tribble(~number, ~letter, 1, "a", 2, "b") produces a two-row two-column data frame. See how we're supplying each row at a time? The first two are the headers, denoted with a '~' (tilde), followed by the first row of data (1 and "a") and so on. You could break each of these row specifications onto a new line in your script file to make it easier to read.
@@ -121,7 +153,7 @@
   Output: The tidyverse emphasises the use of tidy data frames, where each row represents a single observation. As such, many tidyverse tools operate on 'two-dimensional' (tabular) data rather than 'one-dimensional' (vector) data. How can we 'frame' our vector to a tibble so it's ready for data manipulation with the tidyverse?
 
 - Class: cmd_question
-  Output: I've added a named character vector called 'legs_vec' to your environment. Type its name to print it.
+  Output: Remember the 'legs_vec' object we created earlier? Type its name to print it.
   CorrectAnswer: legs_vec
   AnswerTests: any_of_exprs('print(legs_vec)', 'legs_vec')
   Hint: Type 'legs_vec' (without quotes) and hit enter to print the object.
@@ -135,10 +167,10 @@
 - Class: text
   Output: Great, you turned legs_vec from a character vector to a tibble. Note that you can 'undo' this process by using deframe() to go from the data frame to the vector.
 
-# Group: augment tibbles
+# Group: augment tibbles ---
 
 - Class: text
-  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using a tibble called 'leg_count' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
+  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using a tibble called 'legs_tbl' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
 
 # Function: add_row()
 
@@ -146,10 +178,10 @@
   Output: You can use add_row() by supplying the name of the dataframe and then the value you'd like to add to each column along the new row, in the form add_row(dataframe_name, col1 = "a", col2 = 1)
 
 - Class: cmd_question
-  Output: Add a row to the df tibble for 'spider' and its number of legs.
-  CorrectAnswer: add_row(leg_count, animal = "spider", legs = 8)
-  AnswerTests: omnitest(correctExpr='add_row(leg_count, animal = "spider", legs = 8)')
-  Hint: In the add_row() function you need to supply the tibble name (leg_count) and values for the 'animal' and 'legs' columns.
+  Output: Add a row to the legs_tbl tibble for 'spider' and its number of legs.
+  CorrectAnswer: add_row(legs_tbl, animal = "spider", legs = 8)
+  AnswerTests: omnitest(correctExpr='add_row(legs_tbl, animal = "spider", legs = 8)')
+  Hint: In the add_row() function you need to supply the tibble name (legs_tbl) and values for the 'animal' and 'legs' columns.
 
 - Class: text
   Output: Great, see how the new data has been added as a row to the bottom of the original tibble?
@@ -160,10 +192,10 @@
   Output: You can declare new columns with add_column() in the same way you did for tibble(). To the add_column function you supply an expression in the form 'new_col = c("a", "b", "c")'.
 
 - Class: cmd_question
-  Output: Add a column to the legs_count tibble called 'wings' and use c() to supply a vector of the number of wings each animal has. Remember that the animals in this tibble are cat, snake and bird.
+  Output: Add a column to the legs_tbl tibble called 'wings' and use c() to supply a vector of the number of wings each animal has. Remember that the animals in this tibble are cat, snake and bird.
   CorrectAnswer: add_column(df, wings = c(0, 0, 2))
   AnswerTests: omnitest(correctExpr='add_column(df, wings = c(0, 0, 2))')
-  Hint: In the add_column() function you need to supply the tibble name (legs_count) first, followed by the new column name with a vector of values (i.e. 'wings = c(0, 0, 2)').
+  Hint: In the add_column() function you need to supply the tibble name (legs_tbl) first, followed by the new column name with a vector of values (i.e. 'wings = c(0, 0, 2)').
 
 - Class: text
   Output: Great, see how the new data has been added as a column to the right of the rows in the original tibble?
