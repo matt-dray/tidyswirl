@@ -6,7 +6,7 @@
   Version: 2.4.3
 
 - Class: text
-  Output: Reminder: you can type info() at any time to see your options. For example, 'bye()' will exit swirl.
+  Output: Reminder -- you can type info() at any time to see your options. For example, 'bye()' will exit swirl.
 
 # Intro
 
