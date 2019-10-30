@@ -5,7 +5,10 @@
   Type: Standard
   Version: 2.4.3
 
-# Intro ---
+- Class: text
+  Output: Reminder: you can type info() at any time to see your options. For example, 'bye()' will exit swirl.
+
+# Intro
 
 # Single sentence purpose
 
@@ -101,7 +104,7 @@
   Output: You can also construct a tibble object row-by-row by using the tribble() function (the 'r' in 'tribble' stands for 'rows', probably). This makes it easy to copy-paste the contents of some external table into R and make it into a data frame with only small changes.
 
 - Class: text
-  Output: The line tribble(~col1, ~col2, 1, "a", 2, "b") produces the same two-row two-column example we saw in the tibble() example earlier. See how we're supplying each row at a time? The first two are the headers, denoted with a '~' (tilde), followed by the first row of data (1 and "a") and so on. You could break each of these row specifications onto a new line in your script file to make it easier to read.
+  Output: The expression tribble(~number, ~letter, 1, "a", 2, "b") produces a two-row two-column data frame. See how we're supplying each row at a time? The first two are the headers, denoted with a '~' (tilde), followed by the first row of data (1 and "a") and so on. You could break each of these row specifications onto a new line in your script file to make it easier to read.
 
 - Class: cmd_question
   Output: Use the tribble() function to recreate your earlier tibble. The column headers should be 'animal' and 'legs' with rows for 'cat', 'snake' and 'spider'.
@@ -118,24 +121,24 @@
   Output: The tidyverse emphasises the use of tidy data frames, where each row represents a single observation. As such, many tidyverse tools operate on 'two-dimensional' (tabular) data rather than 'one-dimensional' (vector) data. How can we 'frame' our vector to a tibble so it's ready for data manipulation with the tidyverse?
 
 - Class: cmd_question
-  Output: I've added a named character vector called 'legs_vec' to your environment. Now print it.
+  Output: I've added a named character vector called 'legs_vec' to your environment. Type its name to print it.
   CorrectAnswer: legs_vec
   AnswerTests: any_of_exprs('print(legs_vec)', 'legs_vec')
-  Hint: Simply type the object's name to print it.
+  Hint: Type 'legs_vec' (without quotes) and hit enter to print the object.
   
 - Class: cmd_question
-  Output: Use the enframe() function on this object and observe the output. 
+  Output: Supply legs_vec to the enframe() function and observe the output. 
   CorrectAnswer: enframe(legs_vec)
-  AnswerTests: omnitest(correctExpr='legs_vec')
+  AnswerTests: omnitest(correctExpr='enframe(legs_vec)')
   Hint: Type enframe() with the object's name between the brackets.
   
 - Class: text
-  Output: You started with a character vector, a 'data sequence' of values, and ended up with a data frame. Now it's ready for manipulation with other tidyverse packages like {dplyr}. Note that you can 'undo' this process by using deframe() to go from the data frame to the vector.
+  Output: Great, you turned legs_vec from a character vector to a tibble. Note that you can 'undo' this process by using deframe() to go from the data frame to the vector.
 
 # Group: augment tibbles
 
 - Class: text
-  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using a tibble called 'df' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
+  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using a tibble called 'leg_count' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
 
 # Function: add_row()
 
@@ -144,23 +147,26 @@
 
 - Class: cmd_question
   Output: Add a row to the df tibble for 'spider' and its number of legs.
-  CorrectAnswer: add_row(df, animal = "spider", legs = 8)
-  AnswerTests: omnitest(correctExpr='add_row(df, animal = "spider", legs = 8)')
-  Hint: In the add_row() function you need to supply the tibble name (df) and values for the 'animal' and 'legs' columns.
+  CorrectAnswer: add_row(leg_count, animal = "spider", legs = 8)
+  AnswerTests: omnitest(correctExpr='add_row(leg_count, animal = "spider", legs = 8)')
+  Hint: In the add_row() function you need to supply the tibble name (leg_count) and values for the 'animal' and 'legs' columns.
 
 - Class: text
-  Output: See how 
+  Output: Great, see how the new data has been added as a row to the bottom of the original tibble?
 
 # Function: add_column()
 
 - Class: text
-  Output: You declare new columns with add_column() in the same way you did for tibble(), using the form 'new_col = c("a", "b", "c")' inside the function.
+  Output: You can declare new columns with add_column() in the same way you did for tibble(). To the add_column function you supply an expression in the form 'new_col = c("a", "b", "c")'.
 
 - Class: cmd_question
-  Output: Add a column to the df tibble called 'wings' and use c() to supply a vector of the number of wings each animal has.
+  Output: Add a column to the legs_count tibble called 'wings' and use c() to supply a vector of the number of wings each animal has. Remember that the animals in this tibble are cat, snake and bird.
   CorrectAnswer: add_column(df, wings = c(0, 0, 2))
   AnswerTests: omnitest(correctExpr='add_column(df, wings = c(0, 0, 2))')
-  Hint: In the add_column() function you need to supply the tibble name (df) first and then values for the new 'wings' column with c().
+  Hint: In the add_column() function you need to supply the tibble name (legs_count) first, followed by the new column name with a vector of values (i.e. 'wings = c(0, 0, 2)').
+
+- Class: text
+  Output: Great, see how the new data has been added as a column to the right of the rows in the original tibble?
 
 # Outro: what have we learnt?
 
@@ -169,8 +175,10 @@
 
 # Outro: links
 
-- Class: text
-  Output: The tidyverse webpage for the {tibble} package is https://tibble.tidyverse.org/
+- Class: video
+  Output: Would you like to visit the tidyverse webpage for the {tibble} package?
+  VideoLink: https://tibble.tidyverse.org/
 
-- Class: text
-  Output: Get the data import cheatsheet from RStudio at https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
+- Class: video
+  Output: Would you like to go to the data import cheatsheet by RStudio?
+  VideoLink: https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf
