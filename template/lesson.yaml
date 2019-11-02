@@ -1,0 +1,98 @@
+- Class: meta
+  Course: tidyswirl
+  Lesson: <Insert lesson name>
+  Author: <Firstname Lastname>
+  Type: Standard
+  Version: 2.4.3
+
+# Swirl info reminder
+
+- Class: text
+  Output: Reminder -- you can type info() at any time to see your options. For example, 'bye()' will exit Swirl.
+
+# Intro ---
+
+# Single sentence purpose
+
+- Class: text
+  Output: The {<package name>} package by <people> helps you <do something>.
+
+# Short definition/expansion
+
+- Class: text
+  Output: <expand a little bit>
+
+# Tidyverse context
+
+- Class: text
+  Output: Where is {<package name>} used in a tidyverse workflow? You're likely to use it when <example>.
+
+# Package installation
+
+- Class: cmd_question
+  Output: You first need to install {<package name>} into your computer's package library. Run install.packages("<package name>") to install it, or skip() if you've installed version 1.0.0 or greater before.
+  CorrectAnswer: if (!require("<package name>")) install.packages("<package name>")
+  AnswerTests: any_of_exprs('install.packages("<package name>")', 'install.packages(pkgs = "<package name>")', 'if (!require("<package name>")) install.packages("<package name>")', 'skip()')
+  Hint: Remember to type quotation marks around "<package name>" when you pass it to the function.
+  
+- Class: cmd_question
+  Output: Access {<package name>}'s functions by calling it from your computer's package library. Run library(<package name>).
+  CorrectAnswer: library(<package name>)
+  AnswerTests: any_of_exprs('library("<package name>")', 'library(<package name>)', 'library(package = "<package name>")')
+  Hint: Type the package name between the brackets of library(). You don't have to use quotation marks around the package name.
+
+- Class: text
+  Output: Great, the {<package name>} package is installed and loaded. Now we're going to look at some of its functions.
+
+# Group: <a rough grouping of functions in the package that do a similar thing> ---
+
+- Class: text
+  Output: <intro to the group>
+
+# Function: <function name>()
+
+# <if possible/relevant, have a section introduing an inbuilt dataset for the package that will be used in the questions>
+
+- Class: text
+  Output: <what does the function do?>
+
+- Class: cmd_question
+  Output: <do a task using the function>
+  CorrectAnswer: <correct answer>
+  AnswerTests: any_of_exprs('<acceptable answer>', '<acceptable answer>')
+  Hint: <a hint>
+
+- Class: text
+  Output: Excellent, you <did a thing>.
+
+# <add more functions>
+
+# Test: group
+
+- Class: mult_question
+  Output: <question>? (A) <answer>, (B) <answer>, (C) <answer>, (D) <answer>.
+  AnswerChoices: All of them; (A) and (B); (A), (B) and (C); (A), (B) and (D); (A) only
+  CorrectAnswer: (A) and (B)
+  AnswerTests: omnitest(correctVal='(A) and (B)')
+  Hint: <a hint>
+
+- Class: text
+  Output: Okay, we're done with <this group> for now. Let's take a look at <segue to next group>.
+
+# <add more groups containing functions and tests>
+
+# Outro: what have we learnt? ---
+
+- Class: text
+  Output: So what did we learn in this lesson? We've seen how {<package name>} can be used to <do its purpose> by (1) <example>, (2) <example> and (3) <example>.
+
+# Outro: links
+
+- Class: text
+  Output: The tidyverse webpage for the {<package name>} package is https://<package name>.tidyverse.org/
+
+- Class: text
+  Output: Get the cheatsheet from RStudio at https://github.com/rstudio/cheatsheets/blob/master/<something>.pdf
+
+- Class: text
+  Output: <any other useful links>
