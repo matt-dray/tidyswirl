@@ -52,7 +52,7 @@
 - Class: cmd_question
   Output: First, pass 'airquality' to the class() function to see what class of object it is.
   CorrectAnswer: class(airquality)
-  AnswerTests: omnitest(correctExpr = 'class(airquality')
+  AnswerTests: omnitest(correctExpr = 'class(airquality)')
   Hint: Type 'airquality' (without quote marks) inside the brackets of class() and then hit enter.
 
 - Class: text
