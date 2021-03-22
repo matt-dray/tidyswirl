@@ -76,7 +76,7 @@
   Output: Use as_tibble() to convert the airquality data frame from the data.frame class to the tibble class. Assign it (<-) to the name 'airquality_tbl'.
   CorrectAnswer: airquality_tbl <- as_tibble(airquality)
   AnswerTests: any_of_exprs('airquality_tbl <- as_tibble(airquality)', 'airquality_tbl <- as_tibble(x = airquality)')
-  Hint: Use the form 'object_name <- as_tibble(dataframe_name)', where the object is called airquality_tbla and the data frame is called airquality.
+  Hint: Use the form 'object_name <- as_tibble(dataframe_name)', where the object is called airquality_tbl and the data frame is called airquality.
   
 - Class: cmd_question
   Output: Before we look at the output, let's check the class of this new object. Type class(airquality_tbl) and observe the output. 
