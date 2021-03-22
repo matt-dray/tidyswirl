@@ -113,7 +113,7 @@
   Output: You can create tibbles from scratch; you don't just have to convert to them from objects with the data.frame class. There are two functions for this, which are tibble() and tribble().
 
 - Class: text
-  Output: Let's create a very simple tibble object using the tibble() function. Within the function you provide column names and assign vectors to them using c(). The first vector element will be in the first row, and so on. For example, tibble(col1 = c(1:2), col2 = c("a", "b")) creates a two-column, two-row data frame where the first row has a 1 in the column 'col1' and "a" in the column 'col2'.
+  Output: Let's create a very simple tibble object using the tibble() function. Within the function you provide column names and assign vectors to them using c(). The first vector element will be in the first row, and so on. For example, tibble(col1 = c(1, 2), col2 = c("a", "b")) creates a two-column, two-row data frame where the first row has a 1 in the column 'col1' and "a" in the column 'col2'.
 
 - Class: cmd_question
   Output: Create a tibble() with two columns ("animal" and "legs") and three rows (one each for "cat", "snake" and "bird" and their typical leg count). Assign ('<-') the name 'legs_tbl'.
@@ -139,7 +139,7 @@
   Output: The expression tribble(~number, ~letter, 1, "a", 2, "b") produces a two-row two-column data frame. See how we're supplying each row at a time? The first two are the headers, denoted with a '~' (tilde), followed by the first row of data (1 and "a") and so on. You could break each of these row specifications onto a new line in your script file to make it easier to read.
 
 - Class: cmd_question
-  Output: Use the tribble() function to recreate your earlier tibble. The column headers should be 'animal' and 'legs' with rows for 'cat', 'snake' and 'spider'.
+  Output: Use the tribble() function to recreate your earlier tibble (you don't need to assign it this time). The column headers should be 'animal' and 'legs' with rows for 'cat', 'snake' and 'bird'.
   CorrectAnswer: tribble(~animal, ~legs, "cat", 4, "snake", 0, "bird", 2)
   AnswerTests: omnitest(correctExpr='tribble(~animal, ~legs, "cat", 4, "snake", 0, "bird", 2)')
   Hint: Remember to prefix the column headers with a '~' (tilde). The headers don't have to be surrounded with quote marks.
@@ -153,15 +153,18 @@
   Output: The tidyverse emphasises the use of tidy data frames, where each row represents a single observation. As such, many tidyverse tools operate on 'two-dimensional' (tabular) data rather than 'one-dimensional' (vector) data. How can we 'frame' our vector to a tibble so it's ready for data manipulation with the tidyverse?
 
 - Class: cmd_question
-  Output: Remember the 'legs_vec' object we created earlier? Type its name to print it.
+  Output: Let's say we have 'legs_vec', a named character-vector object. Type its name to print it.
   CorrectAnswer: legs_vec
   AnswerTests: any_of_exprs('print(legs_vec)', 'legs_vec')
   Hint: Type 'legs_vec' (without quotes) and hit enter to print the object.
-  
+
+- Class: text
+  Output: We can turn this into a tibble with the enframe() function. You can also supple the arguments 'name' and 'value' so enframe() knows what to call the resulting columns.
+
 - Class: cmd_question
-  Output: Supply legs_vec to the enframe() function and observe the output. 
+  Output: Supply legs_vec to the enframe() function with the arguments 'name = "animal"' and 'value = "legs"' and observe the output. 
   CorrectAnswer: enframe(legs_vec)
-  AnswerTests: omnitest(correctExpr='enframe(legs_vec)')
+  AnswerTests: omnitest(correctExpr='enframe(legs_vec, name = "animal", value = "legs")')
   Hint: Type enframe() with the object's name between the brackets.
   
 - Class: text
@@ -170,7 +173,7 @@
 # Group: augment tibbles ---
 
 - Class: text
-  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using a tibble called 'legs_tbl' that I've added to your workspace (it's the same data as you created in the tibble() and tribble() examples).
+  Output: Once you've created a tibble, you can add new data with add_row() and add_column(). We'll practice using the tibble called 'legs_tbl' that you created earlier.
 
 # Function: add_row()
 
@@ -194,7 +197,7 @@
 - Class: cmd_question
   Output: Add a column to the legs_tbl tibble called 'wings' and use c() to supply a vector of the number of wings each animal has. Remember that the animals in this tibble are cat, snake and bird.
   CorrectAnswer: add_column(df, wings = c(0, 0, 2))
-  AnswerTests: omnitest(correctExpr='add_column(df, wings = c(0, 0, 2))')
+  AnswerTests: omnitest(correctExpr='add_column(legs_tbl, wings = c(0, 0, 2))')
   Hint: In the add_column() function you need to supply the tibble name (legs_tbl) first, followed by the new column name with a vector of values (i.e. 'wings = c(0, 0, 2)').
 
 - Class: text
@@ -212,5 +215,5 @@
   VideoLink: https://tibble.tidyverse.org/
 
 - Class: video
-  Output: Would you like to go to the data import cheatsheet by RStudio?
+  Output: Would you like to go to the data import cheatsheet by RStudio, which has a tibble section on page 2?
   VideoLink: https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf

@@ -3,5 +3,5 @@
       # the user's working directory and thus be accessible to them
       # throughout the lesson.
 
-# Named vector to use in neframe() example
+# Named vector to use in enframe() example
 legs_vec <- c("cat" = 4, "snake"= 0, "bird" = 2)
