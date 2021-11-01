@@ -5,11 +5,13 @@
 [![Blog post](https://img.shields.io/badge/rostrum.blog-post-008900?labelColor=000000&logo=data%3Aimage%2Fgif%3Bbase64%2CR0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh%2BQQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://www.rostrum.blog/2019/11/02/tidyswirl/)
 <!-- badges: end -->
 
-A work-in-progress [Swirl course](https://swirlstats.com/) to learn about R's popular [tidyverse packages](https://www.tidyverse.org/).
+A concept for a [Swirl course](https://swirlstats.com/) to that provides a package-by-package tour of R's popular [tidyverse packages](https://www.tidyverse.org/).
+
+This repo is basically abandoned now, so try [swirl-tidy by Seo-young Silvia Kim](https://github.com/sysilviakim/swirl-tidy) for a proper _course_ that is way more complete.
 
 ## Swirl
 
-[Swirl](https://swirlstats.com/) is an interactive system for learning R from within R itself. At the console you're prompted for answers to challenges---like writing small R snippets and answering multi-choice questions---with feedback and hints provided as needed. Swirl courses [are modular](http://swirlstats.com/scn/index.html) and [anyone can create one](http://swirlstats.com/swirlify/). 
+[Swirl](https://swirlstats.com/) is an interactive system for learning R from within R itself. At the console you're prompted for answers to challenges, like writing small R snippets and answering multi-choice questions, with feedback and hints provided as needed. Swirl courses [are modular](http://swirlstats.com/scn/index.html) and [anyone can create one](http://swirlstats.com/swirlify/). 
 
 This repo contains a Swirl course called Tidyswirl, with lessons about different packages in [the tidyverse suite](https://www.tidyverse.org/). Users are expected to be relative R beginners who are new to the tidyverse.
 
